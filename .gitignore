@@ -1,5 +1,4 @@
 # Created by .ignore support plugin (hsz.mobi)
 .gitignore
-
-#web/WEB-INF/classes/
-#web/WEB-INF/lib/
+web/WEB-INF/classes/
+web/WEB-INF/lib/
