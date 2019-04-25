@@ -129,7 +129,7 @@
         <servlet-name>CurrencyLocale</servlet-name>
         <url-pattern>/TomcatTest/CurrencyLocale</url-pattern>
     </servlet-mapping>
-    <filter>
+  <!--  <filter>
         <filter-name>LogFilter</filter-name>
         <filter-class>com.helloservlet.hello.LogFilter</filter-class>
         <init-param>
@@ -140,16 +140,16 @@
     <filter-mapping>
         <filter-name>LogFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
-<!--    <filter>
-        <filter-name>struts2</filter-name>
-        &lt;!&ndash;<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>&ndash;&gt;
-        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>struts2</filter-name>
-        <url-pattern>/*</url-pattern>
     </filter-mapping>-->
+        <filter>
+            <filter-name>struts2</filter-name>
+           <!-- <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>-->
+            <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+        </filter>
+        <filter-mapping>
+            <filter-name>struts2</filter-name>
+            <url-pattern>*.action</url-pattern>
+        </filter-mapping>
     <servlet>
         <servlet-name>ErrorHandler</servlet-name>
         <servlet-class>com.helloservlet.hello.ErrorHandler</servlet-class>

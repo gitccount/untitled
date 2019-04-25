@@ -3,3 +3,9 @@
 web/WEB-INF/classes/
 web/WEB-INF/lib/
 #.idea
+#lib/hibernate-core-5.4.0.Final.jar
+#lib/odmg-3.0.jar
+#src/Action/
+#src/com/oracle/
+#src/hibernate.cfg.xml
+#src/struts.xml
