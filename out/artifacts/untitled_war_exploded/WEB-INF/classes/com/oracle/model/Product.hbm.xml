@@ -3,13 +3,19 @@
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd-->
+<!--http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd 老版本-->
 <hibernate-mapping package="com.oracle.model">
-    <class name="Product" table="t_product">//把Product类映射成t_product表
-        <id name="id" column="product_id">//column代表数据库的字段
+    <!--//把Product类映射成t_product表-->
+    <class name="com.oracle.model.Product" table="Product">
+        <!--//column代表数据库的字段-->
+        <id name="id" column="id">
+            <!-- //1.native跨数据库时使用，由底层方言产生；2.hibernate默认查找oracle中的hibernate_sequence，如果oracle　　　
+         　//中没有hibernate_sequence该序列，连oracle会报错-->
             <generator class="native"></generator>
-            　　　　//1.native跨数据库时使用，由底层方言产生；2.hibernate默认查找oracle中的hibernate_sequence，如果oracle　　　　//中没有hibernate_sequence该序列，连oracle会报错
+
         </id>
-        <property name="name" column="product_name"></property>
+        <property name="name" column="name"></property>
         <property name="price" column="price"></property>
         <property name="num" column="num"></property>
     </class>

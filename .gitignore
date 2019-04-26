@@ -2,7 +2,9 @@
 .gitignore
 web/WEB-INF/classes/
 web/WEB-INF/lib/
-#.idea
+out/artifacts
+log/test.log
+.idea
 #lib/hibernate-core-5.4.0.Final.jar
 #lib/odmg-3.0.jar
 #src/Action/

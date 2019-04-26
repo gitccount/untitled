@@ -4,7 +4,17 @@ public class Product {
     private String name;
     private Double price;
     private Integer num;
-    private String Id;
+    private Integer Id;
+
+    public Product() {
+    }
+
+    public Product(String name, Double price, Integer num, Integer id) {
+        this.name = name;
+        this.price = price;
+        this.num = num;
+        Id = id;
+    }
 
     public String getName() {
         return name;
@@ -30,11 +40,11 @@ public class Product {
         this.num = num;
     }
 
-    public String getId() {
+    public Integer getId() {
         return Id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         Id = id;
     }
 }
