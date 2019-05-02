@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- <script src="netrequest/jquery-3.3.1.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        function testNetRequest() {
+            $.ajax({
+                type: "get",
+                url: "http://localhost:8080/untitled_war_exploded/DatabaseAccess",
+                // url:"https://www.baidu.com",
+                async: true,
+                dataType: "text",
+                success: function (data) {
+                    // alert(data)
+                    console.log("data:" + data);
+                    let jsonObj = JSON.parse(data);//转换为json对象
+                    for (let i = 0; i < jsonObj.length; i++) {
+                        console.log("for:" + JSON.stringify(jsonObj[i]));
+                        for (let key in jsonObj[i]) {
+                            // console.log("ok:" + key + ":" + jsonObj[i][key]);
+                        }
+                        for (let j = 0; j < jsonObj[i].length; j++) {
+                            console.log("cc")
+                            // console.log("each:" + jsonObj[i][j]);
+                        }
+                    }
+                    // console.log(jsonObj)
+                    // let jsonStr1 = JSON.stringify(jsonObj)
+                    // console.log(jsonStr1 + "jsonStr1")
+                }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown)
+                }
+            });
+        }
+
+        function get() {
+            var URL = 'https://route.showapi.com/181-1';
+            // 初始化实例
+            var request = new XMLHttpRequest();
+            // 构造参数
+            var sendData = {
+                showapi_appid: '30603',
+                showapi_sign: '98960666afeb4992ae91971d13494090',
+                page: 1,
+                num: '8'
+            }
+            // 拼接参数构造URL
+            URL = URL + '?showapi_appid=' + sendData.showapi_appid + "&showapi_sign=" + sendData.showapi_sign + "&page=" + sendData.page + "&num=" + sendData.num;
+            URL = "http://localhost:8080/untitled_war_exploded/DatabaseAccess";
+            // 构造请求  请求类型 URL 是否异步 true异步 false同步
+            request.open('GET', URL, true);
+            // 发送请求
+            request.send(null);
+            //设置异步回调
+            request.onreadystatechange = function (ev) {
+
+                switch (request.readyState) {
+                    case 0:
+                        console.log(new Date() + ' : ' + '未初始化 - 还没有调用send方法');
+                    case 1:
+                        console.log(new Date() + ' : ' + '正在发送请求' + 'time:');
+                    case 2:
+                        console.log(new Date() + ' : ' + '已经接收到全部响应内容' + 'time:');
+                    case 4:
+                        console.log(new Date() + ' : ' + '响应内容解析完成, 可以在客户端使用了' + 'time:');
+                }
+
+                //网络请求成功 打印数据
+                if (request.readyState == 4 && request.status == 200) {
+                    // 打印json字符串
+                    document.write(request.response);
+                    var control = request.response;
+                    for (var i in control[0]) {
+                        if (control[0].hasOwnProperty(i)
+                        ) { //filter,只输出man的私有属性
+                            console.log(i, ":", control[0][i]);//id:1080 ...
+                        }
+                    }
+                    ;
+
+                    // json字符串转对象
+                    let responseObject = JSON.parse(request.response);
+                    // 打印json对象
+                    console.log(responseObject);
+                    // 打印json里面的层级用点(.)来访问
+                    console.log(responseObject.showapi_res_body.toString());
+                }
+            }
+        }
+
+        function post() {
+            // var URL = 'https://game.weixin.qq.com' + '/cgi-bin/gametetrisws/syncgame?session_id=xxxx';
+            var URL = "http://localhost:8080/untitled_war_exploded/GetLocale";
+            // 初始化实例
+            var request = new XMLHttpRequest();
+            //构造POST请求正文数据
+            // var json = '{"appid":"xxxx","game_behav_list":[{"key":"newscore","value":0},{"key":"level","value":100},{"key":"baoshi","value":0},{"key":"combo","value":0}],"sync_type":1,"sig":23026853,"use_time":3}';
+            // var json = {"name": "百毒"};
+            var json = "name=百毒";
+            // 构造请求  请求类型 URL 是否异步 true异步 false同步
+            request.open('POST', URL, true);
+            // 发送请求
+            // request.send(JSON.stringify(sendData));
+            request.send(json);
+            // request.send(null);
+            //设置异步回调
+            request.onreadystatechange = function (ev) {
+
+                switch (request.readyState) {
+                    case 0:
+                        console.log(new Date() + ' : ' + '未初始化 - 还没有调用send方法');
+                    case 1:
+                        console.log(new Date() + ' : ' + '正在发送请求' + 'time:');
+                    case 2:
+                        console.log(new Date() + ' : ' + '已经接收到全部响应内容' + 'time:');
+                    case 4:
+                        console.log(new Date() + ' : ' + '响应内容解析完成, 可以在客户端使用了' + 'time:');
+                }
+
+                //网络请求成功 打印数据
+                if (request.readyState == 4 && request.status == 200) {
+                    // 打印json字符串
+                    document.write(request.response);
+                    var json = request.response;
+                    for (var i = 0, l = json.length; i < l; i++) {
+                        for (var key in json[i]) {
+                            console.log(key + ":" + json[i][key]);
+                        }
+                    }
+                    // json字符串转对象
+                    let responseObject = JSON.parse(request.response);
+                    // 打印json对象
+                    console.log(responseObject);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<button onclick="testNetRequest()">testNetRequest</button>
+<button onclick="get()">get</button>
+<button onclick="post()">post</button>
+</body>
+</html>

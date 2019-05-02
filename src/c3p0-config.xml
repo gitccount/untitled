@@ -10,7 +10,7 @@
     </default-config>
 
     <!--配置连接池mysql-->
-    <named-config name="mysql">
+    <named-config name="RUNOOB">
         <property name="driverClass">com.mysql.jdbc.Driver</property>
         <property name="jdbcUrl">jdbc:mysql://localhost:3306/RUNOOB</property>
         <property name="user">root</property>
@@ -102,4 +102,5 @@
 
     <!--usesTraditionalReflectiveProxies：动态反射代理。Default: false-->
     <property name="usesTraditionalReflectiveProxies">false</property>
+    <property name="hibernate.connection.release_mode">auto</property>
 </c3p0-config>

@@ -19,8 +19,8 @@ import net.sf.json.JSONObject;
  */
 @WebServlet("/GetLocale")
 public class GetLocale extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -29,22 +29,23 @@ public class GetLocale extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	      // 获取客户端的区域设置
-	      Locale locale = request.getLocale();
-	      String language = locale.getLanguage();
-	      String country = locale.getCountry();
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        // 获取客户端的区域设置
+        Locale locale = request.getLocale();
+        String language = locale.getLanguage();
+        String country = locale.getCountry();
+        String value=request.getParameter("name");
+//        String name = new String(request.getParameter("name").getBytes("ISO8859-1"), "UTF-8");
+        // 设置响应内容类型
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
 
-	      // 设置响应内容类型
-	      response.setContentType("text/html;charset=UTF-8");
-	      PrintWriter out = response.getWriter();
-
-	      String title = "检测区域设置";
-	      String docType = "<!DOCTYPE html> \n";
+        String title = "检测区域设置";
+        String docType = "<!DOCTYPE html> \n";
 //	      out.println(docType +
 //	        "<html>\n" +
 //	        "<head><title>" + title + "</title></head>\n" +
@@ -52,19 +53,20 @@ public class GetLocale extends HttpServlet {
 //	        "<h1 align=\"center\">" + language + "</h1>\n" +
 //	        "<h2 align=\"center\">" + country + "</h2>\n" +
 //	        "</body></html>");
-			JSONObject jsonObject1 = new JSONObject();
-			jsonObject1.put("title", title);
-			jsonObject1.put("language", language);
-			jsonObject1.put("country", country);
-			out.println(GsonUtil.GsonString(jsonObject1));
-	}
+        JSONObject jsonObject1 = new JSONObject();
+        jsonObject1.put("title", title);
+        jsonObject1.put("language", language);
+        jsonObject1.put("country", country);
+        jsonObject1.put("name", value);
+        out.println(GsonUtil.GsonString(jsonObject1));
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        doGet(request, response);
+    }
 
 }

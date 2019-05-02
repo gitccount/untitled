@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+   <!-- <script src="netrequest/jquery-3.3.1.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        function testNetRequest(){
+            $.ajax({
+                type:"get",
+                // url:"http://localhost:8080/untitled_war_exploded/DatabaseAccess",
+                url:"http://localhost:8080/untitled_war_exploded/GetLocale",
+                // url:"https://www.baidu.com",
+                async:true,
+                success:function(data){
+                    alert(data)
+                    console.log("data:"+data);
+                    var jsonObj =  JSON.parse(data);//转换为json对象
+                    for(var i=0;i<jsonObj.length;i++){
+                        // alert(jsonObj[i].id);  //取json中的值
+                    }
+                    console.log(jsonObj)
+                    var jsonStr1 = JSON.stringify(jsonObj)
+                    console.log(jsonStr1+"jsonStr1")
+                },error:function(data){
+                    alert(data.toString())
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<button onclick="testNetRequest()">点我</button>
+</body>
+</html>

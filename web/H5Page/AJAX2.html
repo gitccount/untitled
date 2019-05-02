@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX</title>
+    <script>
+        function loadXMLDoc() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var json = JSON.parse(xmlhttp.responseText);//解析要转成json对象
+                    // alert(typeof json1)
+                    // var json = [{"ID": 1, "站点名称": "Google", "站点URL": "https://www.google.cm/"}, {
+                    //     "ID": 2,
+                    //     "站点名称": "淘宝",
+                    //     "站点URL": "https://www.taobao.com/"
+                    // }, {"ID": 3, "站点名称": "菜鸟教程", "站点URL": "http://www.runoob.com"}, {
+                    //     "ID": 4,
+                    //     "站点名称": "微博",
+                    //     "站点URL": "http://weibo.com/"
+                    // }, {"ID": 5, "站点名称": "Facebook", "站点URL": "https://www.facebook.com/"}, {
+                    //     "ID": 6,
+                    //     "站点名称": "白读",
+                    //     "站点URL": "https://baidu.com"
+                    // }];
+                    alert(typeof json)
+                    console.log("返回数据", ":", JSON.stringify(json));//打印要转成string
+                    let result = "<table border='1'>";
+                    for (let i = 0, l = json.length; i < l; i++) {
+                        for (let key in json[i]) {
+                            result += "<tr><td>" + key + "</td><td>" + json[i][key] + "</td></tr>";
+                            console.log(key + ":" + json[i][key]);
+                        }
+                    }
+                    result += "</table>";
+                    document.getElementById("myDiv").innerHTML = result;
+                }
+            }
+            xmlhttp.open("GET", "http://localhost:8080/untitled_war_exploded/DatabaseAccess", true);
+            xmlhttp.send();
+        }
+    </script>
+</head>
+<body>
+<div id="myDiv"><h2>使用 AJAX 修改该文本内容</h2></div>
+<button type="button" onclick="loadXMLDoc()">修改内容返回字符串</button>
+</body>
+</html>

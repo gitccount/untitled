@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSONData</title>
+</head>
+<body>
+<div id="list"></div>
+<SCRIPT>
+    var data = {
+        "tableContent": [
+            {
+                "id": 1880, "fin_date": "1385856000",
+                "fin_total_asset": "112050665.66",
+                "fin_accounts_receivable": "49063408.85",
+                "fin_inventory": "40939952.09",
+                "fin_total_debt": "54458137.58",
+                "fin_only_profit": "54458137.58"
+            }]
+    }
+    var control = data.tableContent;
+    var result = "<table border='1'>";
+    for (var i in control[0]) {
+        if (control[0].hasOwnProperty(i)
+        ) { //filter,只输出man的私有属性
+            console.log(i, ":", control[0][i]);//id:1080 ...
+            result += "<tr><td>" + i+ "</td><td>" + control[0][i] + "</td></tr>";
+        }
+    }
+    ;
+    result += "</table>";
+    var list = document.getElementById("list");
+    list.innerHTML = result;
+
+</SCRIPT>
+
+</body>
+</html>

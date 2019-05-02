@@ -12,7 +12,7 @@ public class C3p0Utils {
     static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(C3p0Utils.class.getName());
 
     //通过标识名来创建相应连接池
-    static ComboPooledDataSource dataSource = new ComboPooledDataSource("mysql");
+    static ComboPooledDataSource dataSource = new ComboPooledDataSource("RUNOOB");
 
     //从连接池中取用一个连接
     public static Connection getConnection() {

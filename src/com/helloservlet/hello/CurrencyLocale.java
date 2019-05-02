@@ -34,6 +34,10 @@ public class CurrencyLocale extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String name = request.getParameter("name");
+		String age = request.getParameter("age");
+		System.out.println(name);
+		System.out.println(age);
 		// TODO Auto-generated method stub
 	    // 设置响应内容类型
 	    response.setContentType("text/html;charset=UTF-8");
